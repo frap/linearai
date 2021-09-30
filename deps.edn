@@ -1,0 +1,76 @@
+{:paths ["src" "resources"]
+ :mvn/repos
+   {"central" {:url "https://repo1.maven.org/maven2/"}} 
+ :deps { uncomplicate/neanderthal {:mvn/version "0.43.3"
+                                   :exclusions [org.jcuda/jcuda
+                                                org.jcuda/jcublas-natives]
+                                   }
+        org.bytedeco/mkl-platform-redist {:mvn/version "2020.3-1.5.4"
+                                          :exclusions [org.bytedeco/mkl-platform-redist$windows-x86_64
+                                                       org.bytedeco/mkl-platform-redist$windows-x86
+                                                       org.bytedeco/mkl-platform-redist$macosx-x86_64]}
+        uncomplicate/clojurecl         {:mvn/version "0.15.1"}
+        org.jocl/jocl                  {:mvn/version "2.0.4"}
+        criterium/criterium            {:mvn/version "0.4.6"}
+        midje/midje                    {:mvn/version "1.10.4"}
+        techascent/tech.ml.dataset     {:mvn/version "6.021"}
+        net.mikera/core.matrix         {:mvn/version "0.62.0"}
+        ch.qos.logback/logback-classic {:mvn/version "1.2.6"
+                                        :exclusions [org.slf4j/slf4j-api]}
+        juxt/clip                      {:mvn/version "0.23.0"}
+        aero/aero                      {:mvn/version "1.1.6"}
+        fipp/fipp                      {:mvn/version "0.6.24"}
+        io.aviso/pretty                {:mvn/version "1.1"}
+        org.slf4j/jcl-over-slf4j       {:mvn/version "1.7.32"}
+        org.slf4j/jul-to-slf4j         {:mvn/version "1.7.32"}
+        org.slf4j/log4j-over-slf4j     {:mvn/version "1.7.32"}
+        org.slf4j/slf4j-api            {:mvn/version "1.7.32"}
+        com.taoensso/timbre            {:mvn/version "5.1.2"}
+        org.clojure/tools.namespace {:mvn/version "1.1.0"}
+        nrepl/nrepl                {:mvn/version "0.8.3"}
+        cider/cider-nrepl          {:mvn/version "0.26.0"}
+        com.bhauman/rebel-readline {:mvn/version "0.1.4"}
+        org.clojure/tools.cli {:mvn/version "1.0.206"}
+        }
+ :aliases
+ {
+  :build {:deps {io.github.seancorfield/build-clj
+                 {:git/tag "v0.5.0" :git/sha "54e39ae"}}
+          :ns-default build}
+  :dev
+  {:extra-paths ["dev"]
+ ;;  :extra-deps {
+ ;;               org.clojure/tools.namespace {:mvn/version "1.1.0"}
+ ;;               nrepl/nrepl                {:mvn/version "0.8.3"}
+ ;;               cider/cider-nrepl          {:mvn/version "0.26.0"}
+ ;;               com.bhauman/rebel-readline {:mvn/version "0.1.4"}
+ ;;               }
+ ;;   :main-opts  ["-m" "nrepl.cmdline"
+ ;;               "--middleware" "[cider.nrepl/cider-middleware]"
+ ;;               "-i"
+ ;;                "-f" "frap.rebel/-main"]
+   }
+   :repl/rebel
+  {:extra-deps {
+                   com.bhauman/rebel-readline {:mvn/version "0.1.4"}}
+    :main-opts  ["-m" "nrepl.cmdline"
+                "--middleware" "[cider.nrepl/cider-middleware]"
+                "-i"
+                "-f" "rebel-readline.main/-main"]
+    :jvm-opts ["-Dclojure.compiler.direct-linking=true"
+        ;; "--add-opens=java.base/jdk.internal.ref=ALL-UNNAMED"
+        ;;      "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED"
+               ]}
+
+   :test
+   {:extra-paths ["test" "test/resources"]
+    :extra-deps  {expectations/clojure-test {:mvn/version "1.2.1"}
+                  com.github.tomakehurst/wiremock-jre8 {:mvn/version "2.31.0"}
+                  kelveden/clj-wiremock {:mvn/version "1.7.0"
+                                         :exclusions [org.eclipse.jetty/jetty-servlet
+                                                      org.eclipse.jetty/jetty-servlets
+                                                      org.eclipse.jetty/jetty-webapp]}
+                  lambdaisland/kaocha {:mvn/version "1.0.887"}
+                  lambdaisland/kaocha-cloverage {:mvn/version "1.0.75"}
+                  lambdaisland/kaocha-junit-xml {:mvn/version "0.0.76"}}}
+   }}

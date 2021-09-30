@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+APPLICATION_JAR="rebel-standalone.jar"
+# Don't forget to rename "config/config-example.edn" to "config/config-local.edn" and change the values to suit your setup.
+#bin/build
+java -cp resources/config:target/$APPLICATION_JAR frap.rebel # --config config-local.edn

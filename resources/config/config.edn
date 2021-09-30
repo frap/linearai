@@ -1,0 +1,18 @@
+;;
+;; Configuration
+;;
+{
+ ;; :secrets #include "/var/run/secrets/startrek-secrets-config.edn" ;; externalised and usually "mounted" as a docker/kubernetes secret
+
+ ;; :runtime-config #include "/config/startrek-runtime-config.edn" ;; externalised and usually "mounted" as a docker/kubernetes secret
+
+ :components
+ ;; opqaue "$deity" configuration
+ {:app-config {:start {
+                      ;; :runtime-config #ref [:runtime-config]
+                      ;; :secrets #ref [:secrets]
+                       :frap-rebel (clip/ref :frap-rebel)}}
+
+  :frap-rebel {:start (frap.rebel/system-config )}
+
+  }}

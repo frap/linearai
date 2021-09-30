@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+APPLICATION_JAR="rebel-standalone.jar"
+
+clojure -T:build uber
+chmod +r target/$APPLICATION_JAR
+docker build -f scripts/docker/Dockerfile -t neanderthal .
+#rm -f pom.xml

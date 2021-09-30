@@ -1,0 +1,9 @@
+#+TITLE: Neanderthal docker image
+
+Using JDK-17 as want to try and develop it for macos metal compatability
+
+Mkl libraries are in lib directory for linux - downloaded and unpacked from org.bytedeco
+
+to run dockerimage need to run the following
+
+~docker run -it --rm --env-file env --name prueba jdk17-neanderthal:lein~
